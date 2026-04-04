@@ -1,0 +1,45 @@
+# Anchor — Product Vision
+
+Most journaling apps solve one problem. Anchor is built around three.
+
+---
+
+## The three problems
+
+### 1. Capture
+
+This is the first thing that needs to work. Anchor should meet people where they are in each moment.
+
+Most people like the idea of handwriting, but the friction is high enough that they start and eventually stop. Moving to typing helps, but it still requires dedicated time — you have to stop what you're doing to do it. Voice notes are another option, and a lot of people use them naturally. But as far as I can tell, there isn't a journaling app that genuinely optimises for all of these — including handwriting. Anchor does.
+
+### 2. Storage
+
+By the time you've tried all of the above, you've got notes scattered across different apps, different devices, and physical notebooks. Now imagine one place that stores everything — and keeps a clean transcript of every entry, no matter what form it came in (audio, photo of a handwritten page, typed dump).
+
+And that data lives on your own device or cloud account, as a plain markdown file. You can take it anywhere. You're not locked in. The data is yours, and you should always feel that way.
+
+On top of that, every entry is indexed — with keywords, tags, and eventually vector search, so you can actually find things.
+
+### 3. Review
+
+What's the point of capturing everything if you never do anything with it?
+
+Some people journal for reflection and personal growth — but it's easy to let that slip in a busy life. Others want to return to specific moments, to see what was happening then. There's something nice about flicking back through journal pages, but sometimes you want to search for something specific and you can't.
+
+Because everything is stored in a structured format, Anchor can generate monthly reviews that surface patterns and key moments — things worth returning to. Those monthly reviews then feed into a yearly review, which goes one level further: Anchor generates the chapter of that person's life for the year that just passed.
+
+---
+
+## Where it goes next
+
+Once the yearly review exists, the natural endpoint is a physical book. A printed record of a year — or a life. In a future version, Anchor would connect to a user's photo library and suggest images to go alongside entries. Users would have full control over what's included.
+
+There's also room for personalisation at the capture level. For people who handwrite in shorthand, Anchor would let them upload their own shorthand dictionary — so when entries are transcribed, every symbol and abbreviation is interpreted correctly.
+
+---
+
+## Why it exists
+
+Anchor was originally built for someone with aphantasia — no mental imagery. Because she can't visualise memories, text records have to do the work that a mental picture would otherwise do. An entry isn't useful if it just summarises what happened. It has to reconstruct the moment — who was there, what was said, the specific detail that makes it real.
+
+That design constraint turned out to be a better way to journal for everyone.
