@@ -44,7 +44,7 @@ YYYY-MM_mmm_week-DD.md
 
 Examples: `2026-01_jan_week-20.md`, `2026-02_feb_week-03.md`
 
-Weeks spanning two months are assigned to whichever month contains more days of that week.
+Weeks spanning two months are assigned to the month the first entry of that week falls in. If the first entry is dated 30 March, the file belongs to March — regardless of how many days fall in April.
 
 ---
 
