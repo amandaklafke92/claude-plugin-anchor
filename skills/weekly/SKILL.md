@@ -5,7 +5,7 @@ description: >
   "wrap up the week", "weekly review", or asks to compile and summarise the week's
   entries. Use when the user wants to synthesise daily entries into a complete weekly
   file with a summary, themes, and highlights.
-version: 0.3.0
+version: 0.3.0 
 ---
 
 # Anchor — Weekly Synthesis Skill
