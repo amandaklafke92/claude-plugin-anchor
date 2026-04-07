@@ -49,7 +49,7 @@ All journal files follow the pattern `YYYY-MM_mmm_[type]-[DD].md`, e.g.:
 - `2026-03_mar_week-16.md`
 - `2026-03_mar_monthly.md`
 
-This keeps files sorted chronologically and grouped by month in any file browser. Full details are in `references/anchor-context.md`.
+This keeps files sorted chronologically and grouped by month in any file browser. Full details are in `plugin/system-guide.md`.
 
 ---
 
@@ -74,9 +74,29 @@ anchor/
 │   │   └── SKILL.md
 │   └── monthly/
 │       └── SKILL.md
-├── references/
-│   └── anchor-context.md
+├── system-guide.md
 └── README.md
+```
+
+---
+
+## Repository structure
+
+This repo contains both the distributable plugin and the product development work behind it.
+
+```
+anchor/
+├── plugin/                  # The plugin bundle — what users install
+│   ├── skills/              # Daily, weekly, and monthly skill definitions
+│   └── system-guide.md      # How the system works — file structures, tags, principles
+├── product/                 # Product development (not part of the plugin)
+│   ├── knowledge-base/      # Specs, decisions, and working principles
+│   ├── user-flows/          # User flow documentation and prototype screenshots
+│   ├── designs/             # Figma exports and wireframes
+│   ├── research/            # User research and competitive notes
+│   └── testing/             # Prototype feedback and test records
+├── VISION.md                # Product vision — the why and where it's going
+└── README.md                # This file
 ```
 
 ---
