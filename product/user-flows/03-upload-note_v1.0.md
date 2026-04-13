@@ -6,7 +6,7 @@
 
 User uploads an image of a handwritten or typed note (photo, scan, or digital document), which is converted to an editable transcript via OCR and saved as a clean journal entry.
 
-For cleanup and fidelity rules, see: [`../knowledge-base/rendering-rules.md`](../knowledge-base/rendering-rules.md)
+For cleanup and fidelity rules, see: [`../knowledge-base/rendering-rules.md`](rendering-rules.md)
 
 > **Scope note**: "Upload a note" covers images as source material — text to be converted and stored. This is distinct from "photo integration" (photos as embedded content within an entry), which is explicitly out of MVP scope. The output of this flow is always a text entry, not a stored image.
 

@@ -6,7 +6,7 @@
 
 User uploads an existing voice note and saves it as a clean, editable journal entry.
 
-For cleanup and fidelity rules, see: [`../knowledge-base/rendering-rules.md`](../knowledge-base/rendering-rules.md)
+For cleanup and fidelity rules, see: [`../knowledge-base/rendering-rules.md`](rendering-rules.md)
 
 ---
 

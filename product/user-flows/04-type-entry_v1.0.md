@@ -6,7 +6,7 @@
 
 User types a journal entry directly and saves it as a clean, readable entry.
 
-For cleanup and fidelity rules, see: [`../knowledge-base/rendering-rules.md`](../knowledge-base/rendering-rules.md)
+For cleanup and fidelity rules, see: [`../knowledge-base/rendering-rules.md`](rendering-rules.md)
 
 > **Pipeline note**: The type entry flow does not generate a separate transcript — the typed text IS the source of truth. There is no OCR or audio transcription step. Rendering applies only light formatting (punctuation, paragraph breaks) with no filler-word removal or inference. See open question in section 7.
 
