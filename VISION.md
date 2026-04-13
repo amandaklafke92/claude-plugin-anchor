@@ -30,6 +30,22 @@ Because everything is stored in a structured format, Anchor can generate monthly
 
 ---
 
+## How it will work
+
+You put something in — text, voice, or an image of handwritten notes. The app formats it, tags it, and saves it. You don't handle files or frontmatter.
+
+### Capture methods
+
+- **Type** — write directly in the app
+- **Record audio** — speak in-app and the app transcribes
+- **Upload audio** — import a voice memo recorded elsewhere (`.m4a`, `.mp3`, `.wav`)
+- **Upload a photo of notes** — handwritten entries, physical journal pages (`.jpg`, `.png`, `.heic`)
+- **Upload a file** — typed notes or documents (`.txt`, `.md`, `.pdf`, `.docx`)
+
+At the end of each month, the app synthesises your entries automatically. At the end of each year, those monthlies become a yearly record of that period of your life.
+
+---
+
 ## Where it goes next
 
 Once the yearly review exists, the natural endpoint is a physical book. A printed record of a year — or a life. In a future version, Anchor would connect to a user's photo library and suggest images to go alongside entries. Users would have full control over what's included.

@@ -1,106 +1,97 @@
 # Anchor
-*Last updated: 23 March 2026*
+*Last updated: 13 April 2026*
 
-A personal memory system for capturing and synthesising lived experience — daily entries, weekly reviews, and monthly reflections.
-
-Anchor is built around one design principle: **text records should reconstruct lived experience, not summarise it.** Every formatting and synthesis decision serves that goal.
+A personal journaling and life-archive system. Built on one idea: a life worth living is worth recording — and records are only useful if you can get back inside them.
 
 ---
 
 ## What it does
 
-Anchor gives Claude three skills:
+Anchor solves three problems: capture, storage, and review.
 
-**Daily capture** — paste in a voice transcript, typed notes, or anything from the day. Claude formats it as a dated journal entry, suggests tags, and files it in the correct weekly file. If the weekly file doesn't exist yet, it creates it.
+**Capture** — it meets you where you are. You put the content in; the system handles formatting and tagging.
 
-**Weekly synthesis** — at the end of the week, Claude reads all your daily entries and compiles a complete weekly file: people, places, themes, highlights, and a short written summary. Can also be run on a schedule.
+**Storage** — every entry is a plain Markdown file, owned by you, living in a folder you control. No proprietary format, no lock-in. Your archive goes wherever you go.
 
-**Monthly reflection** — at the end of the month, Claude reads all your weekly files and writes a monthly summary with concrete memory anchors (specific enough to reconstruct a moment two years later), threads to carry forward, and dominant tags. Written in second person, so it reads like a letter back to you.
+**Review** — because entries are structured, the system can synthesise them. Monthly reflections surface concrete moments, emotional arc, and threads worth carrying forward. Those feed into a yearly synthesis — the chapter of that year of your life.
 
----
-
-## Installation
-
-1. Download `anchor.plugin` from this repo
-2. Open Cowork and go to **Plugins**
-3. Drag in the `.plugin` file or use the install option
-4. Point Cowork at the folder where you want your journal files to live
-
-No external services or API keys required. Everything runs locally on your files.
+For the full story of why Anchor works the way it does, see [VISION.md](VISION.md).
 
 ---
 
-## Usage
+## How it works
 
-Trigger each skill by saying:
+You put the content in. Anchor formats it, tags it, and saves it to the right file. You don't manage files or frontmatter.
 
-| Skill | Trigger phrases |
-|-------|----------------|
-| Daily capture | "add entry", "log this", "daily capture", "new entry" |
-| Weekly synthesis | "do my weekly", "weekly synthesis", "wrap up the week" |
-| Monthly reflection | "monthly review", "monthly synthesis", "end of month" |
+At the end of each month, Anchor reads all your entries and writes a monthly synthesis — concrete moments, the shape of the month, threads to carry forward. Those monthlies feed into a yearly synthesis, which becomes the raw material for a printed record of that year.
 
 ---
 
-## File naming convention
+## Capture methods
 
-All journal files follow the pattern `YYYY-MM_mmm_[type]-[DD].md`, e.g.:
+- **Type** — paste typed notes directly
+- **Voice transcript** — paste a transcript from a voice note recorded elsewhere
+- **Upload a photo of notes** — handwritten entries, physical journal pages (untested in plugin)
+- **Upload a file** — typed notes or documents
 
-- `2026-03_mar_week-16.md`
-- `2026-03_mar_monthly.md`
-
-This keeps files sorted chronologically and grouped by month in any file browser. Full details are in `plugin/system-guide.md`.
-
----
-
-## How the weekly and monthly skills behave
-
-The weekly synthesis skill checks whether there are unsynthesised daily entries before doing anything — if there aren't, it stops without consuming any processing. This means you can schedule it to run automatically without worrying about it firing unnecessarily.
-
-At the end of each month, the weekly skill also checks whether a monthly summary exists for the current month. If it doesn't, and you're within the last 7 days of the month, it will prompt you to run the monthly reflection — so nothing gets missed without being heavy-handed about it.
+In-app audio recording is planned for the standalone app — see [VISION.md](VISION.md).
 
 ---
 
-## Plugin contents
+## Your data
+
+All entries are stored as plain Markdown files. They live in a folder you control — not locked inside a proprietary format, not dependent on Anchor to read. If you ever want to leave, your files leave with you.
+
+---
+
+## Current state
+
+Anchor is currently a set of Claude skills running through Cowork. There's no standalone app yet — that comes once the workflows are proven through use.
+
+### Skills available now
+
+| Skill | What it does | Trigger phrases |
+|-------|-------------|----------------|
+| Daily capture | Formats and files a journal entry | "add entry", "log this", "daily capture", "new entry" |
+| Monthly reflection | Synthesises all entries in a calendar month | "monthly review", "monthly synthesis", "end of month" |
+
+### How entries are stored
+
+Each entry is its own file, named by date. Files live flat in an `entries/` folder — no nesting by month or year.
+
+```
+entries/
+├── 2026-04-13.md
+├── 2026-04-12.md
+└── ...
+
+monthlies/
+├── 2026-04_monthly.md
+└── ...
+```
+
+---
+
+## Future direction
+
+See [VISION.md](VISION.md).
+
+---
+
+## Repo structure
 
 ```
 anchor/
-├── .claude-plugin/
-│   └── plugin.json
-├── skills/
-│   ├── daily/
-│   │   └── SKILL.md
-│   ├── weekly/
-│   │   └── SKILL.md
-│   └── monthly/
-│       └── SKILL.md
-├── system-guide.md
-└── README.md
-```
-
----
-
-## Repository structure
-
-This repo contains both the distributable plugin and the product development work behind it.
-
-```
-anchor/
-├── plugin/                  # The plugin bundle — what users install
-│   ├── skills/              # Daily, weekly, and monthly skill definitions
-│   └── system-guide.md      # How the system works — file structures, tags, principles
+├── plugin/                  # The plugin bundle
+│   ├── skills/              # Skill definitions
+│   └── system-guide.md      # File structures, tags, and formatting rules
 ├── product/                 # Product development (not part of the plugin)
-│   ├── knowledge-base/      # Specs, decisions, and working principles
-│   ├── user-flows/          # User flow documentation and prototype screenshots
+│   ├── knowledge-base/      # Decisions and working principles
+│   ├── user-flows/          # User flow documentation
 │   ├── designs/             # Figma exports and wireframes
-│   ├── research/            # User research and competitive notes
-│   └── testing/             # Prototype feedback and test records
+│   ├── research/            # User research
+│   └── testing/             # Prototype feedback
+├── decisions-system.md      # System design decision log
 ├── VISION.md                # Product vision — the why and where it's going
 └── README.md                # This file
 ```
-
----
-
-## Built with
-
-Claude
