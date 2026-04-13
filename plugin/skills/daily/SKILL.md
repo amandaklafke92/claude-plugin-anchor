@@ -3,17 +3,15 @@ name: anchor-daily
 description: >
   This skill should be used when the user says "add entry", "daily capture",
   "log this", "new entry", "add a daily entry", or provides a block of text,
-  voice transcript, or notes to be recorded as a journal entry. Use when the
-  user wants to capture something that happened and park it in the correct
-  weekly file.
-version: 0.2.0
+  voice transcript, or notes to be recorded as a journal entry.
+version: 0.3.0
 ---
 
 # Anchor — Daily Capture Skill
 
 ## Job
 
-Take raw input (pasted voice transcript, typed dump, or imported text) and format it as a daily entry, then append it to the correct weekly file. Do not synthesise. Do not over-tag. Just format and park.
+Take raw input (pasted voice transcript, typed notes, or imported text) and format it as a dated entry file. Save to the `entries/` folder. Do not synthesise. Do not over-tag. Just format and file.
 
 ---
 
@@ -21,52 +19,57 @@ Take raw input (pasted voice transcript, typed dump, or imported text) and forma
 
 The user will provide one of the following:
 - A pasted voice transcript
-- A typed text dump
+- Typed notes
 - Imported text with a source noted
 
 The user may or may not specify the date.
 
 - If the user provides a date, use it.
-- If no date is given, use the date of the current session and add a small flag directly below the entry heading: *[date autoselected — correct if needed]*
-- Do not infer dates from surrounding context or ask the user for it — just use today and flag it.
+- If no date is given, use the date of the current session and flag it with a note below the heading: *[date autoselected — correct if needed]*
+- Do not infer dates from surrounding context or ask the user for it — use today and flag it.
 
 ---
 
-## File naming convention
-
-Weekly files follow this pattern:
+## File naming
 
 ```
-YYYY-MM_mmm_week-DD.md
+entries/YYYY-MM-DD.md
 ```
 
-| Segment | Example | Notes |
-|---------|---------|-------|
-| `YYYY-MM` | `2026-01` | Zero-padded month — ensures chronological sort |
-| `mmm` | `jan` | Three-letter month abbreviation |
-| `week-DD` | `week-20` | Day the week starts |
-
-Examples: `2026-01_jan_week-20.md`, `2026-02_feb_week-03.md`
-
-Weeks are always assigned to the month their Monday falls in — regardless of when the first entry was added or how many days fall in the following month. If Monday 30 March starts the week, the file belongs to March.
+Example: `entries/2026-04-13.md`
 
 ---
 
-## Daily entry structure
-
-Each entry is appended inside the relevant weekly file using this exact format:
+## Entry file structure
 
 ```
-## [Weekday, DD Month]
+---
+date: YYYY-MM-DD
+source: [typed / audio-record / audio-upload / photo-upload / file-upload]
+people: [First Last, First Last — or leave blank]
+place: [location — or leave blank]
+tags: #tag1 #tag2 #tag3
+---
 
-`source: [source name if imported — omit line entirely if captured directly in session]`
-`tags: #tag1 #tag2 #tag3`
-`keywords: [people, places, themes specific to this entry]`
+# [Weekday, DD Month YYYY]
 
-[Entry content — preserve the user's exact voice and wording verbatim]
+[Entry content — preserve the user's exact voice and wording]
+```
+
+`place:` is always present as a field, even if blank. `people:` includes only people central to the entry — someone the user interacted with or who features in a scene. Not passing mentions.
+
+If a file already exists for that date (a second entry on the same day), append the new entry below a `---` divider with its own heading.
 
 ---
-```
+
+## Source values
+
+Use exactly one of the following for `source:`:
+- `typed` — user typed directly in session
+- `audio-record` — live in-app recording
+- `audio-upload` — user uploaded an audio file
+- `photo-upload` — user uploaded a photo of handwriting or notes
+- `file-upload` — user uploaded a text document
 
 ---
 
@@ -110,35 +113,37 @@ Tags are categorical and thematic — not hyper-specific. Each entry should have
 ## Process
 
 1. Identify or confirm the date of the entry
-2. Format the content as a daily entry block using the structure above
-3. Preserve the user's exact voice and wording — do not paraphrase or tidy up
+2. Determine the correct `source:` value from the input method
+3. Format the entry content — preserve the user's exact voice (see fidelity rules below)
 4. Suggest 5–10 tags from the tag system above — user will approve or trim
-5. Populate the `keywords:` field with people, places, and themes that appear in the entry
-6. If the content came from an external source (e.g. "this is from Voice Memos", "imported from Google Docs"), populate the `source:` field. If no source has been mentioned, ask: *"Would you like to note a source for this entry?"*
-7. Determine the correct weekly file using the naming convention above
-8. Append the formatted entry block to that weekly file. If the file does not exist yet, create it using the weekly file structure (see weekly skill) then add the entry.
-9. Output the formatted entry block to confirm what was saved.
+5. Populate `people:` with anyone central to the entry. Leave blank if none.
+6. Populate `place:` with the meaningful location. Leave blank if not present or incidental.
+7. Write the entry to `entries/YYYY-MM-DD.md`. If the file already exists, append below a `---` divider.
+8. Output the formatted entry to confirm what was saved.
 
 ---
 
-## Entry editing — acceptable vs. unacceptable
+## Fidelity rules
 
-When formatting a voice note or raw journal entry, preserve the user's voice. The goal is light cleanup, not rewriting.
+Preserve the user's voice. The goal is light cleanup, not rewriting.
 
 **Acceptable:**
 - Correcting grammar and punctuation
-- Fixing clear factual errors or transcription mishears from voice input (e.g. "Down Hall" → "Town Hall", "Hogwarts movie" → "Harry Potter movie")
+- Fixing clear transcription errors (e.g. "Down Hall" → "Town Hall")
 - Splitting one long run-on paragraph into two where it aids readability — without changing any words
-- Reordering sentences within a paragraph, only when the original order was clearly scrambled (e.g. from a non-linear voice note). If doing this, flag it to the user rather than doing it silently.
+- Reordering sentences within a paragraph only when the original order was clearly scrambled — flag this to the user rather than doing it silently
 
 **Not acceptable:**
-- Rewriting sentences wholesale, even if the result is "better" writing
-- Replacing the user's phrasing with cleaner or more polished alternatives
-- Condensing or cutting content unless explicitly asked
-- Smoothing out the rawness, informality, or repetition — these are intentional
-- Inferring and inserting words that weren't there. If the user trails off mid-thought, leave it trailing — do not complete the sentence.
+- Rewriting sentences, even if the result is "better" writing
+- Replacing the user's phrasing with cleaner alternatives
+- Condensing or cutting content
+- Smoothing out rawness, informality, or repetition — these are intentional
+- Completing a sentence that trails off — leave it trailing
+- Inferring emotions or motivations not explicitly stated
 
-**Example — unacceptable edit:**
+If a word or phrase from audio cannot be reliably transcribed, mark it `[unclear]`. The user can correct it before saving.
+
+**Example — not acceptable:**
 
 Original: *"I was feeling nervous because in the past I haven't had the best experiences at networking events. Always being dragged there by my ex-boss to talk about recruitment, which I really couldn't care less about."*
 
@@ -146,20 +151,11 @@ Over-edited: *"I'd been nervous about going. In the past, networking events had 
 
 The second version is tighter, but it's no longer her voice.
 
-**Example — acceptable edit:**
-
-Original: *"I was feeling nervous because in the past I haven't had the best experiences at networking events. Always being dragged there by my ex-boss to talk about recruitment, which I really couldn't care less about."*
-
-Lightly edited: No change needed — or minor punctuation only.
-
-If uncertain, do less. The user will flag if more is needed.
-
 ---
 
 ## Rules
 
 - Do not synthesise or analyse — this is capture, not review
-- Do not create new tags without flagging to the user
-- If the date is uncertain, note it explicitly: *[Date approximate]*
-- If the input covers multiple distinct moments or topics, split into separate dated entry blocks and flag this to the user
-- If capturing directly in session (not imported), omit the `source:` line entirely — do not write `source: session` or leave it blank
+- Do not create new tags without flagging to the user first
+- If the date is uncertain, flag it: *[date autoselected — correct if needed]*
+- If the input covers multiple distinct moments or topics, ask the user whether to split into separate files or keep as one
