@@ -1,68 +1,43 @@
 # Anchor
-*Last updated: 13 April 2026*
 
-A personal journaling and life-archive system. Built on one idea: a life worth living is worth recording — and records are only useful if you can get back inside them.
+Anchor is a personal journaling and life-archive system. It turns scattered notes, voice transcripts, and handwritten captures into structured Markdown records you can actually return to.
 
----
+It is built on one idea: a life worth living is worth recording, and records are only useful if you can get back inside them.
 
-## What it does
+## What Anchor Does
 
-Anchor solves three problems: capture, storage, and review.
+Anchor is designed around three jobs:
 
-**Capture** — it meets you where you are. You put the content in; the system handles formatting and tagging.
+- **Capture:** put the memory in however it arrives: typed text, voice transcript, uploaded audio, or a photo of handwritten notes.
+- **Storage:** keep every entry as plain Markdown in a folder the user controls.
+- **Review:** turn structured entries into monthly reflections with concrete moments, emotional arc, and threads worth carrying forward.
 
-**Storage** — every entry is a plain Markdown file, owned by you, living in a folder you control. No proprietary format, no lock-in. Your archive goes wherever you go.
+For the longer product vision, read [VISION.md](VISION.md).
 
-**Review** — because entries are structured, the system can synthesise them. Monthly reflections surface concrete moments, emotional arc, and threads worth carrying forward. Those feed into a yearly synthesis — the chapter of that year of your life.
+## Current State
 
-For the full story of why Anchor works the way it does, see [VISION.md](VISION.md).
+Anchor currently exists as a small plugin/skills system, not a standalone app. The public repo contains the plugin, product direction, public docs, and fictional examples.
 
----
-
-## How it works
-
-You put the content in. Anchor formats it, tags it, and saves it to the right file. You don't manage files or frontmatter.
-
-At the end of each month, Anchor reads all your entries and writes a monthly synthesis — concrete moments, the shape of the month, threads to carry forward. Those monthlies feed into a yearly synthesis, which becomes the raw material for a printed record of that year.
-
----
-
-## Capture methods
-
-- **Type** — paste typed notes directly
-- **Voice transcript** — paste a transcript from a voice note recorded elsewhere
-- **Upload a photo of notes** — handwritten entries, physical journal pages (untested in plugin)
-- **Upload a file** — typed notes or documents
-
-In-app audio recording is planned for the standalone app — see [VISION.md](VISION.md).
-
----
-
-## Your data
-
-All entries are stored as plain Markdown files. They live in a folder you control — not locked inside a proprietary format, not dependent on Anchor to read. If you ever want to leave, your files leave with you.
-
----
-
-## Current state
-
-Anchor is currently a set of Claude skills running through Cowork. There's no standalone app yet — that comes once the workflows are proven through use.
-
-### Skills available now
+Available skills:
 
 | Skill | What it does | Trigger phrases |
-|-------|-------------|----------------|
+| --- | --- | --- |
 | Daily capture | Formats and files a journal entry | "add entry", "log this", "daily capture", "new entry" |
 | Monthly reflection | Synthesises all entries in a calendar month | "monthly review", "monthly synthesis", "end of month" |
 
-### How entries are stored
+See [plugin/README.md](plugin/README.md) for usage notes.
 
-Each entry is its own file, named by date. Files live flat in an `entries/` folder — no nesting by month or year.
+## Data Privacy
 
-```
+Do not store real journal entries in this public repo.
+
+Real entries, monthlies, exports, and private archive material should live in a separate private folder or repository, such as `anchor-entries/`. This repo intentionally includes only fictional examples under `examples/`.
+
+The default Anchor data shape is:
+
+```text
 entries/
 ├── 2026-04-13.md
-├── 2026-04-12.md
 └── ...
 
 monthlies/
@@ -70,28 +45,31 @@ monthlies/
 └── ...
 ```
 
----
+See [docs/data-format.md](docs/data-format.md) for the entry and monthly formats.
 
-## Future direction
+## Roadmap
 
-See [VISION.md](VISION.md).
+The current product direction is a simple Now / Next / Later sequence:
 
----
+- **Now:** prove the capture -> review -> save workflow.
+- **Next:** add voice, audio upload, handwritten-note photo input, source preservation, and automatic storage handling.
+- **Later:** add search, monthly reviews, yearly summaries, and printed life records.
 
-## Repo structure
+See [docs/roadmap.md](docs/roadmap.md) for the public roadmap.
 
-```
+## Repo Structure
+
+```text
 anchor/
-├── plugin/                  # The plugin bundle
-│   ├── skills/              # Skill definitions
-│   └── system-guide.md      # File structures, tags, and formatting rules
-├── product/                 # Product development (not part of the plugin)
-│   ├── knowledge-base/      # Decisions and working principles
-│   ├── user-flows/          # User flow documentation
-│   ├── designs/             # Figma exports and wireframes
-│   ├── research/            # User research
-│   └── testing/             # Prototype feedback
+├── plugin/                  # Installable plugin and skills
+├── docs/                    # Public product/system docs
+├── examples/                # Fictional sample entries and monthlies
+├── product/                 # Product strategy and design working material
 ├── decisions-system.md      # System design decision log
-├── VISION.md                # Product vision — the why and where it's going
-└── README.md                # This file
+├── VISION.md                # Product vision
+└── README.md
 ```
+
+## Contributing
+
+Anchor is early. Small, concrete improvements are more useful than large abstractions. Start with [CONTRIBUTING.md](CONTRIBUTING.md).
