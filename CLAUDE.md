@@ -36,7 +36,9 @@ At the end of any product or system work session, check whether decisions were m
 
 ## Public/private boundary
 
-This is the public product/plugin repo. Real journal entries, monthlies, private archive exports, and session logs belong outside this repo in a private data folder or repository.
+This is the public product/plugin repo. Real journal entries, monthlies, private archive exports, and Anchor session logs belong in the private sibling repo `../anchor-data/`.
+
+Use this repo for public plugin work, public docs, roadmap/product strategy, fictional examples, and open-source maintenance. Use `../anchor-data/` for the live journal data layer and logs about Anchor data-layer work.
 
 ---
 
