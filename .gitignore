@@ -2,13 +2,13 @@
 **/.DS_Store
 
 # Real journal/archive data should live outside this public repo.
-entries/
-monthlies/
-logs/
-archive/
-private/
-local/
-exports/
+/entries/
+/monthlies/
+/logs/
+/archive/
+/private/
+/local/
+/exports/
 
 # Local design/testing material.
 test-assets/
