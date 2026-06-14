@@ -1,0 +1,19 @@
+{
+  "skill": "anchor-daily",
+  "input_file": "anchor-data/raw/2026-05-01.md",
+  "query": "Add this entry",
+  "expected_behavior": [
+    "Date is 2026-05-01",
+    "Source is 'audio-record'",
+    "Corrects voice recognition errors: 'Tanya' and 'Tonya' → 'Tanja' consistently throughout",
+    "people: includes Tanja (central); Menno (present for work section); Jim (mentioned as mentor)",
+    "place: Sydney or Anzac Bridge",
+    "Tags include at minimum: #scene #social #character #work",
+    "Tags include at least one of: #learning #reflection #joy",
+    "5–10 tags total — not over-tagged, no tags invented outside the tag system",
+    "The trauma framework (image / belief / emotion) is preserved verbatim — not summarised",
+    "The voice thermostat / Codex voice-matching section is preserved intact",
+    "No sentences rewritten — light cleanup only (punctuation, paragraph breaks)",
+    "Saved to entries/2026-05-01.md"
+  ]
+}

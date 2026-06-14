@@ -45,10 +45,11 @@ Example: `entries/2026-04-13.md`
 ```
 ---
 date: YYYY-MM-DD
-source: [typed / audio-record / audio-upload / photo-upload / file-upload]
+source_type: [typed / dictated / audio / handwritten / imported / photo]
+source: [optional freeform provenance — e.g. "Memoir_untitled_v1", "driving home, Anzac Bridge". Omit if not meaningful.]
 people: [First Last, First Last — or leave blank]
 place: [location — or leave blank]
-tags: #tag1 #tag2 #tag3
+tags: [tag1, tag2, tag3]
 ---
 
 # [Weekday, DD Month YYYY]
@@ -56,20 +57,36 @@ tags: #tag1 #tag2 #tag3
 [Entry content — preserve the user's exact voice and wording]
 ```
 
-`place:` is always present as a field, even if blank. `people:` includes only people central to the entry — someone the user interacted with or who features in a scene. Not passing mentions.
+`source_type:` is always present. `source:` is freeform — populate when there's meaningful provenance (imported document name, dictation context, audio file label) and omit otherwise. `place:` is always present as a field, even if blank.
+
+**`people:` rules:**
+- Include people the user interacted with or who feature in a scene.
+- Exclude passing mentions.
+- Exclude authors, public figures, or historical names referenced thematically but not interacted with (e.g. a book's author the user is reading). These live in the entry body, not in `people:`.
 
 If a file already exists for that date (a second entry on the same day), append the new entry below a `---` divider with its own heading.
 
 ---
 
-## Source values
+## Source fields
 
-Use exactly one of the following for `source:`:
-- `typed` — user typed directly in session
-- `audio-record` — live in-app recording
-- `audio-upload` — user uploaded an audio file
-- `photo-upload` — user uploaded a photo of handwriting or notes
-- `file-upload` — user uploaded a text document
+Two fields work together:
+
+**`source_type:`** — required, one of:
+- `typed` — typed by user directly
+- `dictated` — spoken aloud, transcribed live, no recording kept
+- `audio` — voice recording (live or uploaded)
+- `handwritten` — handwriting (typically arrived via photo)
+- `imported` — text from an external document (Google Doc, .txt, etc.)
+- `photo` — photograph of a non-text subject (a scene, an object)
+
+**`source:`** — optional freeform string. Populate when there's meaningful provenance worth preserving:
+- Imported document: the document name (e.g. `Memoir_untitled_v1`)
+- Dictation: context where dictated (e.g. `driving home, Anzac Bridge`, `walking, Centennial Park`)
+- Audio: file label or recording context
+- Handwritten/photo: what was photographed or written on (e.g. `notebook page`)
+
+Omit when there's nothing meaningful to add — e.g. a typed in-session entry.
 
 ---
 
@@ -113,13 +130,14 @@ Tags are categorical and thematic — not hyper-specific. Each entry should have
 ## Process
 
 1. Identify or confirm the date of the entry
-2. Determine the correct `source:` value from the input method
-3. Format the entry content — preserve the user's exact voice (see fidelity rules below)
-4. Suggest 5–10 tags from the tag system above — user will approve or trim
-5. Populate `people:` with anyone central to the entry. Leave blank if none.
-6. Populate `place:` with the meaningful location. Leave blank if not present or incidental.
-7. Write the entry to `entries/YYYY-MM-DD.md`. If the file already exists, append below a `---` divider.
-8. Output the formatted entry to confirm what was saved.
+2. Determine the correct `source_type:` value from the input method
+3. Populate `source:` with freeform provenance if meaningful (imported doc name, dictation context, etc.). Omit otherwise.
+4. Format the entry content — preserve the user's exact voice (see fidelity rules below)
+5. Suggest 5–10 tags from the tag system above — user will approve or trim
+6. Populate `people:` with anyone central to the entry. Leave blank if none.
+7. Populate `place:` with the meaningful location. Leave blank if not present or incidental.
+8. Write the entry to `entries/YYYY-MM-DD.md`. If the file already exists, append below a `---` divider.
+9. Output the formatted entry to confirm what was saved.
 
 ---
 

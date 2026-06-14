@@ -1,0 +1,19 @@
+{
+  "skill": "anchor-daily",
+  "input_file": "anchor-data/raw/2026-06-08.md",
+  "query": "Add this entry",
+  "expected_behavior": [
+    "Date is 2026-06-08",
+    "Source is 'audio-record'",
+    "people: includes Camilla, Robin, Craig",
+    "place: Sydney (QB café)",
+    "Tags include at minimum: #scene #social #reflection",
+    "Tags include at least two of: #character #turning-point #struggle #work",
+    "5–10 tags total — not over-tagged, no tags invented outside the tag system",
+    "Robin's specific feedback is preserved: 'generic answer', 'could've been any startup', the bar/99% question",
+    "The Vipassana reset detail about Camilla is preserved",
+    "The realisation that bragging ≠ speaking to experience is preserved — not flattened into a neat conclusion",
+    "No sentences rewritten — light cleanup only (punctuation, paragraph breaks)",
+    "Saved to entries/2026-06-08.md"
+  ]
+}

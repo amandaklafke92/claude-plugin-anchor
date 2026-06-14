@@ -1,0 +1,19 @@
+{
+  "skill": "anchor-daily",
+  "input_file": "anchor-data/raw/2026-05-02.md",
+  "query": "Add this entry",
+  "expected_behavior": [
+    "Date is 2026-05-02",
+    "Source is 'audio-record'",
+    "people: includes Mich, Neena/Nina, Danae/Daini (any consistent spelling per name is acceptable; must include all three)",
+    "place: Sydney",
+    "Tags include at minimum: #scene #social #character",
+    "Tags include at least two of: #reflection #mental-health #creative #joy #work",
+    "5–10 tags total — not over-tagged, no tags invented outside the tag system",
+    "The voice thermostat scale (Courtroom / Meeting room / First date / Group chat / Hen's night) is preserved intact and in order",
+    "The unsettled feeling about not remembering uni memories is preserved — not smoothed over or resolved",
+    "The 'look at her, she's gorgeous' moment and the internal contrast with feeling ugly is preserved",
+    "No sentences rewritten — light cleanup only (punctuation, paragraph breaks)",
+    "Saved to entries/2026-05-02.md"
+  ]
+}
