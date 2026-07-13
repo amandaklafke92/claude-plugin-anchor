@@ -1,9 +1,51 @@
-# Agent Instructions
+# Anchor — Plugin Development Context
 
-This is the public Anchor product/plugin repo.
+Anchor is a Cowork plugin that gives Claude two journaling skills: daily capture and monthly reflection. Entries are stored as plain markdown files in a user-specified folder.
 
-Read `CLAUDE.md` before working in this folder.
+**Core design principle:** text records should reconstruct lived experience, not summarise it.
 
-Use this repo for public plugin work, public docs, roadmap/product strategy, fictional examples, and open-source maintenance.
+---
 
-Do not put real journal entries, monthlies, private archive outputs, or session logs here. Route those to the private `../anchor-data/` repo.
+## Repo structure
+
+```
+anchor/
+├── plugin/              # The plugin bundle — what users install
+│   ├── skills/
+│   │   ├── daily/SKILL.md
+│   │   └── monthly/SKILL.md
+├── docs/                # Public docs for format and roadmap
+├── examples/            # Fictional sample entries and monthlies
+├── product/             # Product development work (not part of the plugin)
+│   ├── strategy/        # Specs, decisions, and working principles
+│   ├── user-flows/      # User flow documentation and prototype screenshots
+│   └── designs/         # Figma exports and wireframes
+├── decisions-system.md  # System design decision log — check here before README when a structural question arises
+├── VISION.md
+└── README.md
+```
+
+---
+
+## Decision logs
+
+- `decisions-system.md` — confirmed design decisions for file structure, metadata, and workflow. The most granular record.
+- `product/strategy/decisions-product.md` — product and feature decisions: what to build, defer, or rule out.
+
+At the end of any product or system work session, check whether decisions were made or surfaced and prompt the maintainer to log them if not already captured.
+
+## Public/private boundary
+
+This is the public product/plugin repo. Real journal entries, monthlies, private archive exports, and Anchor session logs belong in the private sibling repo `../anchor-data/`.
+
+Use this repo for public plugin work, public docs, roadmap/product strategy, fictional examples, and open-source maintenance. Use `../anchor-data/` for the live journal data layer and logs about Anchor data-layer work.
+
+---
+
+## Skill development conventions
+
+Each skill lives in its own folder with a single `SKILL.md` file. Skills are written as plain instructions Claude reads at the start of a task. Skills are self-contained — all rules, structures, and conventions live within the skill file itself.
+
+When writing or modifying skills:
+- Read `decisions-system.md` before making changes — it is the authoritative record of current system design
+- Preserve the user's voice in all entry handling — do not paraphrase or smooth out content
